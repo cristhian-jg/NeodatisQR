@@ -12,6 +12,10 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import org.jdatepicker.impl.JDatePanelImpl;
+import org.jdatepicker.impl.JDatePickerImpl;
+import org.jdatepicker.impl.UtilDateModel;
+
 import com.crisgon.controlador.Operations;
 import com.crisgon.controlador.QRGenerator;
 import com.crisgon.modelo.Evento;
@@ -40,6 +44,13 @@ public class Insertar_Evento extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
+		UtilDateModel model = new UtilDateModel();
+		JDatePanelImpl datePanel = new JDatePanelImpl(model, null);
+		JDatePickerImpl datePicker = new JDatePickerImpl(datePanel, null);
+		datePicker.setBounds(0, 19, 100, -19);
+		 
+		contentPane.add(datePicker);
+		
 		tfLugar = new JTextField();
 		tfLugar.setColumns(10);
 		tfLugar.setBounds(100, 40, 182, 22);
@@ -114,7 +125,10 @@ public class Insertar_Evento extends JFrame {
 				Tipo tipo = (Tipo) cbTipo.getSelectedItem();
 				String url = tfUrl.getText();
 				
-				sb.append(lugar).append(fecha).append(aforo).append(tipo).append(url);
+				sb.append("\n").append(fecha)
+				.append("\n").append(aforo)
+				.append("\n").append(tipo)
+				.append("\n").append(url);
 				
 				qrGenerator.generateQRCodeImage(sb.toString(), 100, 100, rutaFoto);
 				ImageIcon image = new ImageIcon(rutaFoto);

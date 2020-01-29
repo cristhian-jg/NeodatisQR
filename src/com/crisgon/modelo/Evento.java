@@ -22,7 +22,6 @@ public class Evento {
 			Date dateValue = input.parse(fecha);
 			this.fecha = dateValue;
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		this.aforo = aforo;
